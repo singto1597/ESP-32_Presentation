@@ -18,6 +18,11 @@ body {
     color: white;
     cursor: pointer;
     z-index: 1000;
+    transition: 0.3s;
+}
+.menu-btn:hover {
+    color: #00aaff;
+    text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
 }
 
 /* Sidebar (ซ่อนเริ่มต้น) */
@@ -29,25 +34,36 @@ body {
     position: fixed;
     left: -250px; /* ซ่อนเมนู */
     top: 0;
-    transition: 0.3s;
-}
 
-.sidebar h2 {
-    text-align: center;
-    color: #00aaff;
-}
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease-in-out;
 
+    
+}
 .sidebar a {
     display: block;
     color: white;
     padding: 15px;
     text-decoration: none;
-    transition: 0.3s;
+    transition: font-weight 0.3s ease-in-out, font-size 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-
 .sidebar a:hover {
+    background: #88e3ff;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    box-shadow: 0 0 10px #88e3ff;
     background: #333;
 }
+
+.sidebar h2 {
+    text-align: center;
+    margin-top: 1px;
+    margin-left: 25px;
+    color: #88e3ff;
+}
+
 
 /* เมื่อ Sidebar เปิด */
 .sidebar.open {
@@ -56,7 +72,8 @@ body {
 
 /* Main Content */
 .main-content {
-    margin-left: 50px;
+    margin-top: -15px;
+    margin-left: 70px;
     padding: 20px;
     transition: margin-left 0.3s;
 }
@@ -64,4 +81,68 @@ body {
 /* เมื่อ Sidebar เปิด ให้เนื้อหาขยับไป */
 .sidebar.open + .main-content {
     margin-left: 270px;
+}
+
+body {
+    background: #0d0d0d; /* สีพื้นหลังดำด้าน */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+/* เงาสีฟ้าเรืองแสง */
+.background-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 153, 255, 0.15) 10%, rgba(0, 0, 0, 0.95) 80%);
+    z-index: -2;
+}
+
+/* เอฟเฟกต์จุดแสง */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0); opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+/* เอฟเฟกต์เวลาเปลี่ยนหน้า */
+.main-content {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s forwards;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
