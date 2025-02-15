@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 Topic</title>
+    <title>ESP32 & IoT Presentation</title>
     <link rel="stylesheet" href="styles.css">
-</head>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <div id="particles-js"></div>
+
+    <script>
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('Particles.js loaded');
+        });
+    </script>
+    
+
+    <div class="particles"></div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const particlesContainer = document.querySelector('.particles');
+
+        for (let i = 0; i < 70; i++) { // ลดจำนวนจุดให้ดูไม่รก
+            let particle = document.createElement('div');
+            particle.classList.add('particle');
+
+            let size = Math.random() * 4 + 2; // จุดแสงสุ่ม 2px - 6px
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            particle.style.left = `${Math.random() * 100}vw`; 
+            particle.style.top = `${Math.random() * 100}vh`; 
+            particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+
+            particlesContainer.appendChild(particle);
+        }
+    });
+    </script>
+            
+    </head>
 <body>
 
     <!-- ปุ่มเปิดเมนู -->
