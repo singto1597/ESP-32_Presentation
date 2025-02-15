@@ -5,6 +5,10 @@ body {
     background-color: #121212;
     color: white;
     overflow-x: hidden;
+    background: #0d0d0d; /* สีพื้นหลังดำด้าน */
+    color: white;
+    overflow: hidden;
+    position: relative;
 }
 
 /* ปุ่มเมนู */
@@ -83,13 +87,6 @@ body {
     margin-left: 270px;
 }
 
-body {
-    background: #0d0d0d; /* สีพื้นหลังดำด้าน */
-    color: white;
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
-    position: relative;
-}
 
 /* เงาสีฟ้าเรืองแสง */
 .background-glow {
