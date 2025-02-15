@@ -41,6 +41,8 @@
         
 </head>
 <body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
 
     <!-- ปุ่มเปิดเมนู -->
     <button class="menu-btn" onclick="toggleMenu()">☰</button>
@@ -59,10 +61,81 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <h1>Welcome to ESP32 & IoT Presentation</h1>
-        <p>Click the menu button to navigate topics.</p>
+        <h1 class="fade-in">Welcome to <span class="highlight">ESP32 & IoT</span> Presentation</h1>
+        <p class="fade-in">Explore the world of IoT with ESP32! Navigate through the <span class="highlight">Get start</span> to discover topics.</p>
+        <p class="fade-in">เปิดโลกของ IoT ด้วย ESP32! คลิก <span class="highlight">Get start</span> เพื่อไปค้นหาหัวข้อที่น่าตื่นเต้นกันเถอะ!</p>
+    </div>
+     <!-- ปุ่ม Get Started -->
+    <a href="#" id="get-started-btn" class="get-started-btn">🚀 Get Start</a>
+
+    <!-- เอฟเฟกต์ไฟ -->
+    <div id="fire-overlay">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="fire-wave" d="M0,100 C20,90 40,70 50,60 C60,50 80,30 100,10 L100,100 Z"></path>
+        </svg>
     </div>
 
+    <script>
+        document.getElementById('get-started-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // เรียกใช้ fire overlay
+            const fireOverlay = document.getElementById('fire-overlay');
+            fireOverlay.classList.add('active');
+
+            // หลังจากเอฟเฟกต์เสร็จให้เปลี่ยนหน้า
+            setTimeout(() => {
+                window.location.href = 'topic.html?topic=Overview';
+            }, 1500);
+        });
+    </script>
+
+    <style>
+
+
+        /* เอฟเฟกต์ไฟ */
+        #fire-overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(to top, #ff4500, rgba(255, 140, 0, 0.7));
+            overflow: hidden;
+            transition: height 1.5s ease-in-out;
+            z-index: 9999;
+        }
+
+        /* SVG รูปร่างไฟ */
+        #fire-overlay svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Path ไฟ */
+        .fire-wave {
+            fill: url(#fire-gradient);
+            animation: fireMove 1s infinite alternate ease-in-out;
+        }
+
+        /* เอฟเฟกต์คลื่นไฟ */
+        @keyframes fireMove {
+            0% {
+                d: path("M0,100 C20,90 40,70 50,60 C60,50 80,30 100,10 L100,100 Z");
+            }
+            100% {
+                d: path("M0,100 C25,85 45,65 55,55 C65,45 85,25 100,5 L100,100 Z");
+            }
+        }
+
+        /* เปิด Transition */
+        #fire-overlay.active {
+            height: 100%;
+        }
+    </style>
     <script src="script.js"></script>
 </body>
 </html>

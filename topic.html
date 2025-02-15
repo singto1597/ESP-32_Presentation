@@ -15,7 +15,7 @@
         });
     </script>
     
-
+    <div class="background-glow"></div>
     <div class="particles"></div>
 
     <script>
@@ -38,8 +38,8 @@
         }
     });
     </script>
-            
-    </head>
+        
+</head>
 <body>
 
     <!-- ปุ่มเปิดเมนู -->
@@ -61,7 +61,45 @@
     <div class="main-content">
         <h1 id="topic-title"></h1>
         <p id="topic-description"></p>
+        
     </div>
+    <a href="#" id="next-btn" class="get-started-btn">Next</a>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const topicTitle = document.getElementById("topic-title");
+            const topicDescription = document.getElementById("topic-description");
+            const nextButton = document.getElementById("next-btn");
+
+            // ตัวอย่างข้อมูลหัวข้อ
+            const topics = [
+                { title: "Overview", description: "Introduction to ESP32 and IoT", nextTopic: "Features" },
+                { title: "Features", description: "Key features of ESP32", nextTopic: "Projects" },
+                { title: "Projects", description: "Explore various IoT projects", nextTopic: "Code" },
+                { title: "Code", description: "Learn ESP32 coding examples", nextTopic: "Applications" },
+                { title: "Applications", description: "Real-world applications of ESP32", nextTopic: "Future" },
+                { title: "Future", description: "Future trends in ESP32 and IoT", nextTopic: "Overview" } // กลับไปที่ Overview
+            ];
+
+            let currentTopic = window.location.search.split('=')[1] || "Overview"; // เอาหัวข้อจาก URL หรือใช้ 'Overview' ถ้าไม่มี
+
+            // หา topic ที่ตรงกับหัวข้อปัจจุบัน
+            let current = topics.find(topic => topic.title === currentTopic);
+
+            if (current) {
+                topicTitle.textContent = current.title;
+                topicDescription.textContent = current.description;
+
+                // เปลี่ยนลิงก์ของปุ่ม Next
+                if (current.nextTopic === "Overview") {
+                    nextButton.href = "index.html"; // หากถึงหน้าสุดท้าย ให้กลับไปที่หน้าแรก
+                    nextButton.textContent = "🏠 Go to Home"; // เปลี่ยนข้อความปุ่ม
+                } else {
+                    nextButton.href = `topic.html?topic=${current.nextTopic}`;
+                    nextButton.textContent = "Next"; // เปลี่ยนข้อความกลับเป็น "Next" เมื่อยังไม่ถึงหน้าสุดท้าย
+                }
+            }
+        });
+    </script>
 
     <script src="script.js"></script>
 </body>

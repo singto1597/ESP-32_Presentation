@@ -1,14 +1,12 @@
+/* ฟอนต์ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
     margin: 0;
-    padding: 0;
-    background-color: #121212;
-    color: white;
-    overflow-x: hidden;
-    background: #0d0d0d; /* สีพื้นหลังดำด้าน */
-    color: white;
-    overflow: hidden;
-    position: relative;
+    background-color: #0d1117;
+    color: #c9d1d9;
 }
 
 /* ปุ่มเมนู */
@@ -80,6 +78,7 @@ body {
     margin-left: 70px;
     padding: 20px;
     transition: margin-left 0.3s;
+    z-index: 100;
 }
 
 /* เมื่อ Sidebar เปิด ให้เนื้อหาขยับไป */
@@ -90,9 +89,11 @@ body {
 
 /* เงาสีฟ้าเรืองแสง */
 .background-glow {
-    position: absolute;
+    position: fixed; /* เปลี่ยนจาก absolute เป็น fixed */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh; /* ใช้ 100vh เพื่อให้เต็มจอ */
     background: radial-gradient(circle, rgba(0, 153, 255, 0.15) 10%, rgba(0, 0, 0, 0.95) 80%);
     z-index: -2;
 }
@@ -143,3 +144,57 @@ body {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
+
+/* Fade-in Effect */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+
+/* Highlight Text */
+.highlight {
+    color: #00aaff;
+    text-shadow: 0 0 10px #69cdff, 0 0 20px #007acc;
+}
+
+/* ปุ่ม Get Started */
+.get-started-btn {
+    position: absolute;
+    bottom: 40px;
+    right: 50px;
+    
+    display: inline-block;
+    padding: 12px 24px;
+    background: #007acc;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    
+    transition: background 0.3s, transform 0.2s;
+}
+.get-started-btn:hover {
+    background: #4db5ff;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ffffff;
+}
+
+pre {
+    background: rgba(85, 85, 85, 0.3); /* สีเทาเข้มโปร่งแสง */
+    padding: 10px;
+    border-radius: 5px;
+    color: white;     
+    display: inline-block;
+    width: fit-content;
+    max-width: 100%;  
+    overflow-x: auto;  
+    font-family: "consolas", monospace;
+
+    backdrop-filter: blur(8px); /* ทำให้พื้นหลังเบลอ */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* เส้นขอบบาง ๆ */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เงาเบา ๆ */
+}
+
