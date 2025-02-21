@@ -27,28 +27,24 @@ body {
     text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
 }
 
-/* Sidebar (ซ่อนเริ่มต้น) */
+/* Sidebar */
 .sidebar {
     width: 250px;
     height: 100vh;
-    background: #1e1e1e;
-    padding-top: 20px;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(5px);
     position: fixed;
     left: -250px; /* ซ่อนเมนู */
     top: 0;
-
-    background: rgba(30, 30, 30, 0.95);
-    backdrop-filter: blur(5px);
+    padding-top: 20px;
     transition: transform 0.3s ease-in-out;
-
-    
 }
 .sidebar a {
     display: block;
     color: white;
     padding: 15px;
     text-decoration: none;
-    transition: font-weight 0.3s ease-in-out, font-size 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: font-weight 0.3s, font-size 0.3s, color 0.3s;
 }
 .sidebar a:hover {
     background: #88e3ff;
@@ -58,42 +54,45 @@ body {
     box-shadow: 0 0 10px #88e3ff;
     background: #333;
 }
-
 .sidebar h2 {
     text-align: center;
-    margin-top: 1px;
-    margin-left: 25px;
     color: #88e3ff;
 }
-
-
-/* เมื่อ Sidebar เปิด */
 .sidebar.open {
     left: 0;
 }
 
+/* ปุ่มปิดเมนู (เฉพาะมือถือ) */
+.close-btn {
+    display: none; /* ซ่อนไว้ก่อน */
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
 /* Main Content */
 .main-content {
-    margin-top: -15px;
     margin-left: 70px;
     padding: 20px;
     transition: margin-left 0.3s;
     z-index: 100;
 }
-
-/* เมื่อ Sidebar เปิด ให้เนื้อหาขยับไป */
 .sidebar.open + .main-content {
     margin-left: 270px;
 }
 
-
 /* เงาสีฟ้าเรืองแสง */
 .background-glow {
-    position: fixed; /* เปลี่ยนจาก absolute เป็น fixed */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* ใช้ 100vh เพื่อให้เต็มจอ */
+    height: 100vh;
     background: radial-gradient(circle, rgba(0, 153, 255, 0.15) 10%, rgba(0, 0, 0, 0.95) 80%);
     z-index: -2;
 }
@@ -108,7 +107,6 @@ body {
     pointer-events: none;
     z-index: -1;
 }
-
 .particle {
     position: absolute;
     width: 4px;
@@ -118,40 +116,20 @@ body {
     opacity: 0.5;
     animation: floatParticles linear infinite;
 }
-
 @keyframes floatParticles {
     0% { transform: translateY(0); opacity: 0.3; }
     50% { opacity: 1; }
     100% { transform: translateY(-100vh); opacity: 0; }
 }
-
-#particles-js {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
-/* เอฟเฟกต์เวลาเปลี่ยนหน้า */
 .main-content {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 0.8s forwards;
 }
-
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Fade-in Effect */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s ease-in-out forwards;
-}
-
 
 /* Highlight Text */
 .highlight {
@@ -164,7 +142,6 @@ body {
     position: absolute;
     bottom: 40px;
     right: 50px;
-    
     display: inline-block;
     padding: 12px 24px;
     background: #007acc;
@@ -173,7 +150,6 @@ body {
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    
     transition: background 0.3s, transform 0.2s;
 }
 .get-started-btn:hover {
@@ -182,37 +158,65 @@ body {
     box-shadow: 0 0 15px #ffffff;
 }
 
+/* โค้ด */
 pre {
-    background: rgba(85, 85, 85, 0.3); /* สีเทาเข้มโปร่งแสง */
+    background: rgba(85, 85, 85, 0.3);
     padding: 10px;
     border-radius: 5px;
-    color: white;     
+    color: white;
     display: inline-block;
-    width: fit-content;
-    max-width: 100%;  
-    overflow-x: auto;  
+    max-width: 100%;
+    overflow-x: auto;
     font-family: "consolas", monospace;
-
-    backdrop-filter: blur(8px); /* ทำให้พื้นหลังเบลอ */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* เส้นขอบบาง ๆ */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เงาเบา ๆ */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* รูปภาพ */
 .image-container {
     display: inline-block;
     border-radius: 10px;
     padding: 0px;
     margin-top: 200px;
 }
-
 .image-container img {
-    width: 300px; /* ปรับขนาดรูป */
+    width: 300px;
     height: auto;
     border-radius: 10px;
-    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+.image-container:hover img {
+    transform: scale(1.15);
 }
 
-.image-container:hover img {
-    transform: scale(1.15); /* ค่อยๆขยาย */
-
+/* 📱 Responsive (รองรับมือถือ) */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* ขยายเต็มจอ */
+        left: -100%; /* ซ่อนเริ่มต้น */
+    }
+    .sidebar.open {
+        left: 0;
+    }
+    .sidebar h2 {
+        margin-left: 0;
+    }
+    .menu-btn {
+        left: 10px;
+    }
+    .close-btn {
+        display: block;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .get-started-btn {
+        bottom: 20px;
+        right: 20px;
+        font-size: 1em;
+    }
+    .image-container img {
+        width: 100%;
+    }
 }
