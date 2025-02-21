@@ -192,16 +192,6 @@ pre {
 
 /* 📱 Responsive (รองรับมือถือ) */
 @media screen and (max-width: 768px) {
-    .sidebar {
-        width: 100%; /* ขยายเต็มจอ */
-        left: -100%; /* ซ่อนเริ่มต้น */
-    }
-    .sidebar.open {
-        left: 0;
-    }
-    .sidebar h2 {
-        margin-left: 0;
-    }
     .menu-btn {
         left: 10px;
     }
@@ -218,5 +208,11 @@ pre {
     }
     .image-container img {
         width: 100%;
+    }
+    .image-container {
+        display: inline-block;
+        border-radius: 10px;
+        padding: 0px;
+        margin-top: 0px;
     }
 }
